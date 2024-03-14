@@ -15,24 +15,25 @@ const Bot = () => {
 
     const addText = async (e) => {
         e.preventDefault()
-        console.log(myText)
+        // console.log(myText)
         const newText = { user: 'User', id: new Date().getTime().toString(), text: myText }
+        const theText=myText
+        setMyText('')
         const updatedChat = [...myChat, newText]
         setMyChat(updatedChat)
 
-        const resp = await fetch('https://emotions-predictor-dusky.vercel.app/emotions', { 
+        const resp = await fetch('https://emopred-back.vercel.app/emotions', { 
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(myText)
+            body: JSON.stringify(theText)
         })
 
         const res = await resp.json()
         console.log(res.emotion)
         const newReply = { user: 'Bot', id: new Date().getTime().toString(), text: res.emotion }
         setMyChat([...updatedChat, newReply])
-        setMyText('')
     }
 
     const dateParsed = (myDate) => {
