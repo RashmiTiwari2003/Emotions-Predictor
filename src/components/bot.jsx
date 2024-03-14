@@ -22,7 +22,7 @@ const Bot = () => {
         const updatedChat = [...myChat, newText]
         setMyChat(updatedChat)
 
-        const resp = await fetch('https://emopred-back.vercel.app/emotions', { 
+        const resp = await fetch('https://emo-back.vercel.app/emotions', { 
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
